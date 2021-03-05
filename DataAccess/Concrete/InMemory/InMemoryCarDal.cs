@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -64,14 +65,14 @@ namespace DataAccess.Concrete.InMemory
             return _brands;
         }
 
-        public List<Car> GetByBrandId(int id)
+        public List<Car> GetByBrand(Brand brand)
         {
-            return _cars.FindAll(c => c.BrandId == id);
+            return _brands.SingleOrDefault(b => b.Id == brand.Id).Cars;
         }
 
-        public List<Car> GetByColorId(int id)
+        public List<Car> GetByColor(Color color)
         {
-            return _cars.FindAll(c => c.ColorId == id);
+            return _cars.FindAll(c => c.ColorId == color.Id);
         }
 
         public Car GetById(int id)
