@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using DataAccess.Abstract;
@@ -22,25 +23,25 @@ namespace DataAccess.Concrete.InMemory
             //hafıza usulü fake veritabanı
             _cars = new List<Car>
             {
-                new Car {Id = 1, BrandId = 1, ColorId = 5, DailyPrice = 45000, Description = "Hybrid Hatchback", ModelYear = 2014},
-                new Car {Id = 2, BrandId = 1, ColorId = 3, DailyPrice = 60000, Description = "Slightly Expensive Hybrid Hatchback", ModelYear = 2014},
-                new Car {Id = 3, BrandId = 2, ColorId = 8, DailyPrice = 1000000, Description = "Super Expensive Hybrid Hatchback", ModelYear = 2021},
-                new Car {Id = 4, BrandId = 3, ColorId = 4, DailyPrice = 165000, Description = "Average Hybrid Hatchback", ModelYear = 2019}
+                new Car {CarId = 1, BrandId = 1, ColorId = 3, DailyPrice = 45000, Description = "Hybrid Hatchback", ModelYear = 2014},
+                new Car {CarId = 2, BrandId = 1, ColorId = 3, DailyPrice = 60000, Description = "Slightly Expensive Hybrid Hatchback", ModelYear = 2005},
+                new Car {CarId = 3, BrandId = 2, ColorId = 1, DailyPrice = 1000000, Description = "Super Expensive Ferrari", ModelYear = 2021},
+                new Car {CarId = 2, BrandId = 3, ColorId = 4, DailyPrice = 165000, Description = "Average Hybrid Hatchback", ModelYear = 2014}
             };
 
             _brands = new List<Brand>
             {
-                new Brand {Id = 1, BrandName = "Fiat", Cars = _cars.FindAll(c => c.BrandId == 1)},
-                new Brand {Id = 2, BrandName = "Ferrari", Cars = _cars.FindAll(c => c.BrandId == 2)},
-                new Brand {Id = 3, BrandName = "Ford", Cars = _cars.FindAll(c => c.BrandId == 3)}
+                new Brand {BrandId = 1, Name = "Fiat"},
+                new Brand {BrandId = 2, Name = "Ferrari"},
+                new Brand {BrandId = 3, Name = "Ford"}
             };
 
             _colors = new List<Color>
             {
-                new Color {Id = 5, ColorName = System.Drawing.Color.Blue},
-                new Color {Id = 3, ColorName = System.Drawing.Color.Orange},
-                new Color {Id = 8, ColorName = System.Drawing.Color.Red},
-                new Color {Id = 4, ColorName = System.Drawing.Color.Black}
+                new Color {ColorId = 1, Name = "Blue"},
+                new Color {ColorId = 2, Name = "Orange"},
+                new Color {ColorId = 3, Name = "Red"},
+                new Color {ColorId = 4, Name = "Black"}
             };
         }
 
@@ -51,8 +52,13 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car car)
         {
-            // Id unique olduğu için RemoveAll demekte bir problem. Sonuçta tek eşleşme olacak.
-            _cars.RemoveAll(c => c.Id == car.Id);
+            // BrandId unique olduğu için RemoveAll demekte bir problem. Sonuçta tek eşleşme olacak.
+            _cars.RemoveAll(c => c.CarId == car.CarId);
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetAll()
@@ -60,29 +66,34 @@ namespace DataAccess.Concrete.InMemory
             return _cars;
         }
 
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Brand> GetAllBrands()
         {
             return _brands;
         }
 
-        public List<Car> GetByBrand(Brand brand)
+        public List<Car> GetByBrandId(int id)
         {
-            return _brands.SingleOrDefault(b => b.Id == brand.Id).Cars;
+            return _cars.Where(c => c.BrandId == id).ToList();
         }
 
-        public List<Car> GetByColor(Color color)
+        public List<Car> GetByColorId(int id)
         {
-            return _cars.FindAll(c => c.ColorId == color.Id);
+            return _cars.Where(c => c.ColorId == id).ToList();
         }
 
         public Car GetById(int id)
         {
-            return _cars.SingleOrDefault(c => c.Id == id);
+            return _cars.SingleOrDefault(c => c.CarId == id);
         }
 
         public void Update(Car car)
         {
-            Car carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Car carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
 
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
