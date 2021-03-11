@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    class CarContext : DbContext
+    public class CarContext : DbContext
     {
 
         public CarContext() : base()

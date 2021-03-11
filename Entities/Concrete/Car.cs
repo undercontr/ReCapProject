@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
 using System.Text;
-using Entities.Abstract;
+using Core.Entities;
 
 namespace Entities.Concrete
 {

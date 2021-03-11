@@ -9,10 +9,7 @@ namespace Business.Abstract
     public interface ICarService
     {
         List<Car> GetAll();
-        List<CarAllInfoDto> GetAllWithRelations();
         Car GetById(int id);
-        List<CarBrandDto> GetCarsByBrandId(int id);
-        List<CarColorDto> GetCarsByColorId(int id);
-
+        List<CarDetailsDto> GetCarDetails();
     }
 }
