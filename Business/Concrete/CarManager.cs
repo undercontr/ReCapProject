@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs.Concrete;
@@ -18,19 +20,19 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public Car GetById(int id)
+        public IDataResult<Car> GetById(int id)
         {
-            return _carDal.Get(c => c.CarId == id);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
         }
 
-        public List<CarDetailsDto> GetCarDetails()
+        public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
         }
     }
 }
