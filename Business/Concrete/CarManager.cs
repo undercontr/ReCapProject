@@ -22,17 +22,17 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.ProductsListed);
         }
 
         public IDataResult<Car> GetById(int id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.ProductGetSuccess);
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.ProductDetailsSuccess);
         }
     }
 }

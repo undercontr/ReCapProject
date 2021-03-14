@@ -6,10 +6,13 @@ namespace Business.Constants
 {
     public static class Messages
     {
-        public static string ProductAdded = "Product Added";
-        public static string MaintenanceTime = "Maintenance Time";
-        public static string ProductUpdated = "Product Updated";
-        public static string ProductDeleted = "Product Deleted";
-        public static string ProductInvalidName = "Product name is invalid";
+        public static readonly string ProductAdded = "Product Added";
+        public static readonly string MaintenanceTime = "Maintenance Time";
+        public static readonly string ProductUpdated = "Product Updated";
+        public static readonly string ProductDeleted = "Product Deleted";
+        public static readonly string ProductInvalidName = "Product name is invalid";
+        public static readonly string ProductsListed = "Products listed";
+        public static readonly string ProductGetSuccess = "Product listed by id";
+        public static readonly string ProductDetailsSuccess = "Product details listed";
     }
 }
