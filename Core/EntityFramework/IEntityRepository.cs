@@ -13,7 +13,7 @@ namespace Core.EntityFramework
         void Update(T entity);
         void Delete(T entity);
         List<T> GetAll();
-        List<T> GetAll(Expression<Func<T, bool>> filter=null);
+        List<T> GetAll(Expression<Func<T, bool>> filter);
         T Get(Expression<Func<T, bool>> filter);
     }
 }
