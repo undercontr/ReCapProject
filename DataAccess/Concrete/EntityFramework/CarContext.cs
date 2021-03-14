@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
     public class CarContext : DbContext
     {
 
-        public CarContext() : base()
+        public CarContext()
         {
             Database.EnsureCreated();
         }

@@ -40,13 +40,20 @@ namespace Core.EntityFramework
             }
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+
+        public List<TEntity> GetAll()
         {
             using (TContext context = new TContext())
             {
-                return filter == null
-                    ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
+                return context.Set<TEntity>().ToList();
+            }
+        }
+
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().Where(filter).ToList();
             }
         }
 
