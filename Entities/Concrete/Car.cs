@@ -48,7 +48,14 @@ namespace Entities.Concrete
             }
             set
             {
-                if (value > 0) dailyPrice = value; else throw new ValidationException("DailyPrice must be bigger than 0");
+                if (value > 0)
+                {
+                    dailyPrice = value;
+                }
+                else
+                {
+                    throw new ValidationException("DailyPrice must be bigger than 0");
+                }
             }
         }
         public string Description { get; set; }
