@@ -12,17 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarContext>, IRentalDal
     {
 
-        public new void Add(Rental rental)
-        {
-            using (CarContext context = new CarContext())
-            {
-                if (rental.ReturnDate == null)
-                {
-
-                }
-            }
-        }
-
         public RentalDetailDto GetUserRentalDetail(int userId)
         {
             using (CarContext context = new CarContext())
@@ -34,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                     join co in context.Set<Color>() on ca.ColorId equals co.ColorId
                     join br in context.Set<Brand>() on ca.BrandId equals br.BrandId
                     where u.UserId == userId
-                    select new RentalDetailDto()
+                    select new RentalDetailDto
                     {
                         ModelYear = ca.ModelYear,
                         CarId = ca.CarId,
