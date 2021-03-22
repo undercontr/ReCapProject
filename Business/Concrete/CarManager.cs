@@ -5,6 +5,7 @@ using System.Text;
 using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -37,10 +38,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.ProductDetailsSuccess);
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Car car)
         {
-
-            ValidationTool.Validate(new ProductValidator(), car);
 
             _carDal.Add(car);
 
