@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
-using Core.Utilities;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs.Concrete;
@@ -37,6 +39,9 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
+
+            ValidationTool.Validate(new ProductValidator(), car);
+
             _carDal.Add(car);
 
             return new SuccessResult(Messages.ProductAdded);
