@@ -59,6 +59,7 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -71,6 +72,7 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
         [HttpGet("get")]
         public IActionResult Get(int id)
         {

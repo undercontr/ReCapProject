@@ -10,6 +10,7 @@ using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using Module = Autofac.Module;
 
 namespace Business.DependencyResolvers.Autofac
@@ -18,10 +19,13 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CarManager>().As<ICarService>();
-            builder.RegisterType<EfCarDal>().As<ICarDal>();
+            builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
+            builder.RegisterType<EfCarDal>().As<ICarDal>().SingleInstance();
 
-            var assembly = Assembly.GetExecutingAssembly();
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
+
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()

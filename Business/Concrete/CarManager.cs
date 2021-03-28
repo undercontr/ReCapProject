@@ -25,17 +25,17 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.ProductsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
 
         public IDataResult<Car> GetById(int id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.ProductGetSuccess);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.CarGetSuccess);
         }
 
         public IDataResult<List<CarDetailsDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.ProductDetailsSuccess);
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails(), Messages.CarDetailsListed);
         }
 
         [ValidationAspect(typeof(ProductValidator))]
@@ -44,21 +44,21 @@ namespace Business.Concrete
 
             _carDal.Add(car);
 
-            return new SuccessResult(Messages.ProductAdded);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Update(Car car)
         {
             _carDal.Update(car);
 
-            return new SuccessResult(Messages.ProductUpdated);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
 
-            return new SuccessResult(Messages.ProductDeleted);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
 

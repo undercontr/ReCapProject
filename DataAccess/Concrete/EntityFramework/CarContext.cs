@@ -14,12 +14,14 @@ namespace DataAccess.Concrete.EntityFramework
 
         public CarContext()
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
+
+        public DbSet<CarImage> CarImages { get; set; }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customers { get; set; }
