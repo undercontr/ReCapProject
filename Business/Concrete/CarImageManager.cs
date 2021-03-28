@@ -85,8 +85,7 @@ namespace Business.Concrete
 
             var result = BusinessRules.Run(CheckIfCarImageExists(id));
 
-
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.CarImageId == id));
+            return result != null ? new SuccessDataResult<CarImage>(CheckIfCarImageExists(id).Data[0]) : new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.CarImageId == id));
         }
 
         public IDataResult<CarAllImagesDto> GetAllImagesByCarId(int carId)
