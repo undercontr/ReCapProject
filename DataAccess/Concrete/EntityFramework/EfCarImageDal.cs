@@ -19,7 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from ci in context.Set<CarImage>()
                     join c in context.Set<Car>() on ci.CarId equals c.CarId
-                    select new CarImageDto()
+                    select new CarImageDto
                     {
                         ModelYear = c.ModelYear,
                         CarId = c.CarId,

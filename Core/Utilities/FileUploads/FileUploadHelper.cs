@@ -10,7 +10,7 @@ namespace Core.Utilities.FileUploads
 {
     public static class FileUploadHelper
     {
-        public const string UploadDir = "ImageUploads";
+        public static readonly string UploadDir = "ImageUploads";
 
         public static IDataResult<string> CreateImage(IFormFile formFile)
         {
