@@ -32,4 +32,4 @@ Project dependant on several NuGet packages, Such as:
  - **System.ComponentModel.Annotations**
 
 For further questions please email me [here](mailto:onder.alkan15@gmail.com)
-Visit my LinkedIn Profile [here](https://www.linkedin.com/in/alkanonder/)
+Visit my LinkedIn Profile [here](https://www.linkedin.com/in/onderalkan/)
